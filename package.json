@@ -1,7 +1,7 @@
 {
   "name": "catfood-front-end",
   "version": "0.1.0",
-  "description": "猫粮项目 - 前端脚手架",
+  "description": "后台管理系统 - 前端脚手架",
   "main": "src/main.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js --progress",
