@@ -37,8 +37,6 @@ ReactDOM.render(
     <Router>
     	<Switch>
     		<Roster />
-        	<Route path="/user/add" component={UserAddPage} />
-        	<Route path="/demo" component={HomeLayout} />
     	</Switch>
     </Router>,
     document.getElementById('root'), ()=>{

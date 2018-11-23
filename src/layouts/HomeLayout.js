@@ -4,19 +4,49 @@ import { Layout, Menu, Icon } from 'antd';
 import style from '../styles/home-layout.less';
 import Device from '../components/device';
 import CarBar from '../components/CarBar';
+import TableMarker from '../components/TableMarker';
 
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 class HomeLayout extends React.Component {
+  constructor(props) {
+    super(props);
+    const _self = this;
+    _self.newTabIndex = 0;
+    const panes = [
+      { title: '基本信息', content: 'Content of Tab Pane 1', key: '1' },
+      { title: 'Tab 2', content: 'Content of Tab Pane 2', key: '2' },
+    ];
+    const componentNames = [
+      { title: '组件第一个', content: 'Content of Tab Pane 1', key: '1' },
+      { title: '组件2', content: 'Content of Tab Pane 2', key: '2' },
+    ]
+    _self.state = {
+      activeKey: panes[0].key,
+      panes,
+    };
+  }
+
+  add = () => {
+    console.log('增加新的属性');
+    const _self = this;
+    const panes = this.state.panes;
+    const activeKey = `newTab${this.newTabIndex++}`;
+    panes.push({ title: 'New Tab', content: 'New Tab Pane', key: activeKey });
+    _self.setState({ panes, activeKey });
+  }
+
   render () {
     const _self = this;
 		const {children} = this.props;
-		console.log( 'children === ', children);
+
+    console.log( '_self.state == ', _self.state )
+    _self.state 
 		return (
       <div>
 				<header className='header'>
-					ReactManager
+          ReactManager
 				</header>
 				<main className='main'>
 					<div className='menu'>
@@ -36,7 +66,7 @@ class HomeLayout extends React.Component {
                   <Link to={"/users/add"}>平台管理</Link>
 								</MenuItem>
             		<MenuItem key="car-manage">
-            			车型管理
+            			<div onClick={this.add}>车型管理</div>
             		</MenuItem>
                 <MenuItem key="device-manage">
                   设备管理
@@ -52,7 +82,7 @@ class HomeLayout extends React.Component {
               </SubMenu>
               <SubMenu key="book" title={<span><Icon type="book"/><span>图书管理</span></span>}>
                 <MenuItem key="book-list">
-                  图书列表
+                  <div onClick={_self.add}>图书列表</div>
                 </MenuItem>
                 <MenuItem key="book-add">
                   添加图书
@@ -61,7 +91,7 @@ class HomeLayout extends React.Component {
             </Menu>
           </div>
           <div className='content'>
-            {_self.props.children}
+            <TableMarker componentNames={_self.state}/>
           </div>
         </main>
       </div>

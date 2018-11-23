@@ -14,7 +14,7 @@ module.exports = merge(common.baseConfig, {
         contentBase: './dist',
         host: '127.0.0.1',
         compress: true,
-        port: 6607,
+        port: 6600,
         // 需要webpack.HotModuleReplacementPlugin才能完全启用HMR。
         // 如果使用--hot选项启动webpack或webpack-dev-server，则会自动添加该插件，因
         // 此您可能不需要将其添加到webpack.config.js中
